@@ -2,14 +2,16 @@ import express from "express";
 import MongoConnect from "./Config.js";
 import cors from 'cors';
 import routes from './Routes/routes.js';
+import dotenv from "dotenv";
 
 const app = express();
 const PORT = 8000;
+dotenv.config();
 
 
 // database connection
 MongoConnect(
-  "mongodb+srv://aniket_1811:aniket1811@atlascluster.isestxc.mongodb.net/pocket-notes"
+  process.env.MONGO_URL
 )
   .then(() => console.log("Database Connected"))
   .catch((e) => console.log("error while database connecting ", e));
